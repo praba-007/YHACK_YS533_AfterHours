@@ -14,7 +14,8 @@ import {
   Zap, 
   ArrowRight,
   TrendingUp,
-  Layers
+  Layers,
+  Printer
 } from 'lucide-react';
 import { NavTab, OperationalUrgency } from '../types';
 
@@ -38,7 +39,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   const elevatedThr = machineHealth?.elevated_threshold ?? 304.255;
   const severeThr = machineHealth?.severe_threshold ?? 729.718;
   const timestamp = machineHealth?.timestamp || '2020-09-01 03:59:00';
-  const coverage = machineHealth?.quality_gate.coverage ?? 1.0;
+  const coverage = machineHealth?.quality_gate?.coverage ?? 1.0;
 
   const isInsufficientEvidence = decision === 'INSUFFICIENT EVIDENCE' || coverage < 0.6;
 
@@ -163,6 +164,14 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
               <div>Dataset: MetroPT-3 · Historical telemetry</div>
               <div>Observation: {timestamp}</div>
             </div>
+            <button
+              onClick={() => window.print()}
+              className="no-print mt-3 flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFE600] text-black border-2 border-black rounded-xl font-mono text-xs font-bold shadow-[2px_2px_0_#000] hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
+              title="Print full machine overview report"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>PRINT REPORT</span>
+            </button>
           </div>
         </div>
 

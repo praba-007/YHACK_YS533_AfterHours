@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavTab } from '../types';
+import { Printer } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: NavTab;
@@ -39,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Server & Engine Status Tag */}
+        {/* Server & Engine Status Tag + Print Report Action */}
         <div className="flex items-center gap-3">
           <div 
             className="user-tag hidden sm:flex items-center gap-2"
@@ -51,6 +52,15 @@ export const Header: React.FC<HeaderProps> = ({
               API CONNECTED • MAHALANOBIS • METROPT-3
             </span>
           </div>
+
+          <button
+            onClick={() => window.print()}
+            className="no-print flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 bg-[#FFE600] text-black border-2 border-black rounded-xl font-mono text-xs font-bold shadow-[2px_2px_0_#000] hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
+            title="Print current telemetry and maintenance report (PDF)"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span>PRINT REPORT</span>
+          </button>
         </div>
       </div>
 

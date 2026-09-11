@@ -12,7 +12,8 @@ import {
   AlertTriangle,
   ArrowRight,
   Database,
-  Sliders
+  Sliders,
+  Printer
 } from 'lucide-react';
 
 import { OperationalUrgency } from '../types';
@@ -29,9 +30,9 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
   const anomalyDistance = machineHealth?.anomaly_distance ?? 33.46;
   const elevatedThreshold = machineHealth?.elevated_threshold ?? 304.255;
   const severeThreshold = machineHealth?.severe_threshold ?? 729.718;
-  const qualityGatePassed = machineHealth?.quality_gate.gate_passed ?? true;
-  const coverage = machineHealth?.quality_gate.coverage ?? 1.0;
-  const motorCurrent = machineHealth?.sensor_readings.motor_current_amps ?? 0.044;
+  const qualityGatePassed = machineHealth?.quality_gate?.gate_passed ?? true;
+  const coverage = machineHealth?.quality_gate?.coverage ?? 1.0;
+  const motorCurrent = machineHealth?.sensor_readings?.motor_current_amps ?? 0.044;
 
   const isInsufficientEvidence = decision === 'INSUFFICIENT EVIDENCE' || coverage < 0.6;
 
@@ -76,16 +77,26 @@ export const DiagnosticsView: React.FC<DiagnosticsViewProps> = ({
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-10">
       {/* 1. Header & Diagnostic Summary */}
       <section className="bg-white border-4 border-black rounded-[32px] p-6 sm:p-10 shadow-[8px_8px_0_#000]">
-        <div className="border-b-3 border-black pb-4 mb-6">
-          <span className="text-[10px] font-mono font-black uppercase tracking-widest text-slate-500">
-            EXPLAINABLE DECISION ENGINE
-          </span>
-          <h2 className="font-comic text-3xl sm:text-4xl font-bold text-black tracking-tight">
-            Diagnostic Summary & Attribution
-          </h2>
-          <p className="text-xs sm:text-sm font-bold text-slate-700 mt-1">
-            Why MachPulse reached this maintenance decision: objective decomposition of the Mahalanobis anomaly distance against healthy February baseline parameters.
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-3 border-black pb-4 mb-6">
+          <div>
+            <span className="text-[10px] font-mono font-black uppercase tracking-widest text-slate-500">
+              EXPLAINABLE DECISION ENGINE
+            </span>
+            <h2 className="font-comic text-3xl sm:text-4xl font-bold text-black tracking-tight">
+              Diagnostic Summary & Attribution
+            </h2>
+            <p className="text-xs sm:text-sm font-bold text-slate-700 mt-1">
+              Why MachPulse reached this maintenance decision: objective decomposition of the Mahalanobis anomaly distance against healthy February baseline parameters.
+            </p>
+          </div>
+          <button
+            onClick={() => window.print()}
+            className="no-print self-start sm:self-center shrink-0 flex items-center gap-1.5 px-3.5 py-2 bg-[#FFE600] text-black border-2 border-black rounded-xl font-mono text-xs font-bold shadow-[2px_2px_0_#000] hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
+            title="Print diagnostic attribution report"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span>PRINT REPORT</span>
+          </button>
         </div>
 
         {/* 8-Metric Diagnostic Matrix */}

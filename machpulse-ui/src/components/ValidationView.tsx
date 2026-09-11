@@ -20,7 +20,8 @@ import {
   Layers, 
   BarChart3, 
   Info,
-  ShieldCheck
+  ShieldCheck,
+  Printer
 } from 'lucide-react';
 
 interface ValidationViewProps {
@@ -41,7 +42,9 @@ export const ValidationView: React.FC<ValidationViewProps> = ({
   const detectedCount = failureEvents ? failureEvents.failures_detected : 3;
   const totalCount = failureEvents ? failureEvents.total_documented_failures : 4;
   const precisionPct = failureEvents ? (failureEvents.precision * 100).toFixed(2) : '6.02';
-  const falseAlarmsPerMonth = baselines ? baselines.machpulse_mahalanobis.false_alarms_per_month.toFixed(2) : '42.91';
+  const falseAlarmsPerMonth = baselines?.machpulse_mahalanobis?.false_alarms_per_month !== undefined 
+    ? baselines.machpulse_mahalanobis.false_alarms_per_month.toFixed(2) 
+    : '42.91';
 
   // Failure event cards with honest status
   const events = [
@@ -100,10 +103,18 @@ export const ValidationView: React.FC<ValidationViewProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-mono font-bold bg-[#C1F6C9] px-3 py-1.5 rounded-full border-2 border-black shadow-[2px_2px_0_#000]">
               Held-Out Test Data: Apr 11 – Sep 1
             </span>
+            <button
+              onClick={() => window.print()}
+              className="no-print flex items-center gap-1.5 px-3 py-1.5 bg-[#FFE600] text-black border-2 border-black rounded-full font-mono text-xs font-bold shadow-[2px_2px_0_#000] hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5 cursor-pointer transition-all"
+              title="Print validation benchmark report"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>PRINT REPORT</span>
+            </button>
           </div>
         </div>
 
