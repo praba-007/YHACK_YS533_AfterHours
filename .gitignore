@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+machpulse-ui/node_modules/
+.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+build/
+machpulse-ui/dist/
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+backend/.venv/
+
+# Python cache & bytecode
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+**/.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+!.env.example
+!backend/.env.example
+!machpulse-ui/.env.example
+
+# Machine Learning & Model Artifacts
+ml/models/*.pkl
+ml/models/*.joblib
+ml/models/*.onnx
+ml/models/*.h5
+*.log
+
+# Large Datasets & Archives
+data/*.csv
+data/*.parquet
+data/*.zip
+data/*.tar.gz
+*.zip
+!data/.gitkeep
+
+# IDE & OS files
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

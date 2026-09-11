@@ -1,0 +1,12 @@
+{
+  "name": "machpulse",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix machpulse-ui run dev",
+    "build": "npm --prefix machpulse-ui run build",
+    "preview": "npm --prefix machpulse-ui run preview",
+    "lint": "npm --prefix machpulse-ui run lint"
+  }
+}

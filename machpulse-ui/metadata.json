@@ -1,0 +1,8 @@
+{
+  "name": "Industrial AI Predictive Maintenance",
+  "description": "Real-time AI-based predictive maintenance, fault diagnosis, health estimation, and risk analytics for industrial equipment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

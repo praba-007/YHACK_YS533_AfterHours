@@ -1,0 +1,15 @@
+fastapi>=0.110.0,<1.0.0
+uvicorn[standard]>=0.28.0,<1.0.0
+pandas>=2.2.0,<3.0.0
+numpy>=1.26.0,<3.0.0
+scipy>=1.12.0,<2.0.0
+scikit-learn>=1.4.0,<2.0.0
+python-multipart>=0.0.9,<1.0.0
+
+# Phase 4 - AI explanation layer. Optional at runtime: the Claude provider is
+# imported lazily, so the backend and every existing endpoint work without it.
+anthropic>=0.69.0,<1.0.0
+
+# Phase 4 - test dependencies (backend/tests/).
+pytest>=8.0.0,<9.0.0
+httpx>=0.27.0,<1.0.0

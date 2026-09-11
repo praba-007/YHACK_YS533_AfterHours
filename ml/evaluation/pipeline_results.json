@@ -1,0 +1,133 @@
+{
+  "status": "success",
+  "dataset": {
+    "csv_path": "G:\\project\\MACH PULSE\\data\\MetroPT3(AirCompressor).csv",
+    "raw_rows_loaded": 1516948,
+    "raw_timestamp_start": "2020-02-01 00:00:00",
+    "raw_timestamp_end": "2020-09-01 03:59:50",
+    "grid_minutes": 306960,
+    "missing_minutes": 54579,
+    "missing_percentage": 17.78
+  },
+  "features": {
+    "total_feature_columns": 367,
+    "model_feature_columns_count": 129,
+    "feature_windows": [
+      "1h",
+      "6h",
+      "24h"
+    ]
+  },
+  "splits": {
+    "train_rows": 41760,
+    "calib_rows": 59040,
+    "test_rows": 206160
+  },
+  "model": {
+    "algorithm": "Mahalanobis Distance (Per-Operating-State Shrinkage Covariance)",
+    "states_fitted": [
+      "off",
+      "offloaded",
+      "loaded"
+    ],
+    "calibrated_threshold": 304.255,
+    "calibrated_severe_threshold": 729.718,
+    "target_false_alarm_budget_per_month": 2.0
+  },
+  "evaluation": {
+    "total_test_episodes": 216,
+    "failures_detected": 3,
+    "total_documented_failures": 4,
+    "recall": 0.75,
+    "precision": 0.0602,
+    "false_alarm_episodes": 203,
+    "false_alarm_rate_per_month": 42.91,
+    "events_breakdown": [
+      {
+        "event_id": "F1",
+        "failure_type": "Air leak",
+        "documented_start": "2020-04-18 00:00:00",
+        "documented_end": "2020-04-18 23:59:00",
+        "detected": true,
+        "lead_time_hours": -19.6,
+        "first_alert_timestamp": "2020-04-18 19:36:00",
+        "first_alert_severity": "INSPECT",
+        "report_note": ""
+      },
+      {
+        "event_id": "F2",
+        "failure_type": "Air leak",
+        "documented_start": "2020-05-29 23:30:00",
+        "documented_end": "2020-05-30 06:00:00",
+        "detected": false,
+        "lead_time_hours": null,
+        "first_alert_timestamp": null,
+        "first_alert_severity": null,
+        "report_note": "Maintenance on 30 Apr at 12:00"
+      },
+      {
+        "event_id": "F3",
+        "failure_type": "Air leak",
+        "documented_start": "2020-06-05 10:00:00",
+        "documented_end": "2020-06-07 14:30:00",
+        "detected": true,
+        "lead_time_hours": -17.83,
+        "first_alert_timestamp": "2020-06-06 03:50:00",
+        "first_alert_severity": "INSPECT",
+        "report_note": "Maintenance on 8 Jun at 16:00"
+      },
+      {
+        "event_id": "F4",
+        "failure_type": "Air leak",
+        "documented_start": "2020-07-15 14:30:00",
+        "documented_end": "2020-07-15 19:00:00",
+        "detected": true,
+        "lead_time_hours": 16.83,
+        "first_alert_timestamp": "2020-07-14 21:40:00",
+        "first_alert_severity": "INSPECT",
+        "report_note": "Maintenance on 16 Jul at 00:00"
+      }
+    ],
+    "top_contributing_features": {
+      "H1_off_24h_p10": 41918.916,
+      "H1_offloaded_24h_p90": 32147.064,
+      "H1_offloaded_24h_mean": 26570.322,
+      "TP2_offloaded_24h_mean": 22468.891,
+      "TP2_offloaded_24h_p10": 21836.724
+    }
+  },
+  "baselines_comparison": {
+    "machpulse_mahalanobis": {
+      "recall": 0.75,
+      "false_alarms_per_month": 42.91,
+      "interpretable": true
+    },
+    "fixed_threshold_baseline": {
+      "recall": 1.0,
+      "false_alarms_per_month": 8.03,
+      "description": "Motor_current > 4.0A sustained >= 10m"
+    },
+    "lps_alarm_baseline": {
+      "recall": 0.75,
+      "false_alarms_per_month": 22.19,
+      "description": "On-board Low Pressure Switch signal"
+    },
+    "isolation_forest_baseline": {
+      "recall": 0.25,
+      "false_alarms_per_month": 5.5,
+      "description": "Per-state Isolation Forest (secondary detector)"
+    }
+  },
+  "performance": {
+    "total_pipeline_runtime_sec": 19.45,
+    "timings_breakdown": {
+      "load_raw_sec": 3.4,
+      "prepare_grid_sec": 1.88,
+      "build_features_sec": 7.26,
+      "fit_mahalanobis_sec": 0.27,
+      "fit_isolation_forest_sec": 0.87,
+      "calibration_sec": 1.58,
+      "score_test_sec": 1.94
+    }
+  }
+}
